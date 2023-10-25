@@ -4,12 +4,24 @@ import { Parallax, Mousewheel, Controller, Pagination, Scrollbar, Navigation } f
 Swiper.use([Parallax, Mousewheel, Controller, Pagination, Scrollbar, Navigation])
 
 import { gsap, Power2 } from "gsap";
+import MicroModal from "micromodal";
+
 
 document.addEventListener('DOMContentLoaded', () => {
+	// Modal
+	MicroModal.init({
+		openTrigger: 'data-micromodal-open',
+		closeTrigger: 'data-micromodal-close',
+		disableFocus: true,
+		disableScroll: true,
+		awaitOpenAnimation: true,
+		awaitCloseAnimation: true,
 
+	})
 	// Custom JS
 
 	// Swiper
+	// Slider image BG and total pagination code below
 	const swiperIMG = new Swiper('.slider-img', {
 		loop: false,
 		speed: 2100,
@@ -18,12 +30,13 @@ document.addEventListener('DOMContentLoaded', () => {
 			el: '.slider-pagination-count .total',
 			type: 'custom',
 			renderCustom: function (swiper, current, total) {
-				return `0${total}`
+				let totalRes = total >= 10 ? total : `0${total}`;
+				return totalRes;
 			}
 		}
 
 	})
-
+	// slider text content and controllers code below
 	const swiperTEXT = new Swiper('.slider-text', {
 		loop: false,
 		speed: 2100,
@@ -47,7 +60,7 @@ document.addEventListener('DOMContentLoaded', () => {
 	swiperIMG.controller.control = swiperTEXT
 	swiperTEXT.controller.control = swiperIMG
 
-	// GEAR
+	// GEAR animation
 	let gear = document.querySelector('.slider-gear');
 	swiperTEXT.on('slideNextTransitionStart', function () {
 		gsap.to(gear, 2.4, {
@@ -62,14 +75,33 @@ document.addEventListener('DOMContentLoaded', () => {
 		})
 	})
 
-	// Count
+	// Count animation (current slide number)
 	let curNum = document.querySelector('.slider-pagination-count .current'),
-		pageCurr = document.querySelector('.slider-pagination-count')
+		pageCurr = document.querySelector('.slider-pagination-current__num')
 
 	swiperTEXT.on('slideChange', function () {
-		let ind = swiperTEXT.realIndex
-		console.log(ind)
-		// **TODO 3.04.36
+		let ind = swiperTEXT.realIndex + 1
+		gsap.to(curNum, .2, {
+			force3D: true,
+			y: -10,
+			opacity: 0,
+			ease: Power2.easeOut,
+			onComplete: function () {
+				gsap.to(curNum, .1, {
+					force3D: true,
+					y: 10,
+				})
+				curNum.innerHTML = ind >= 10 ? ind : `0${ind}`;
+				pageCurr.innerHTML = ind >= 10 ? ind : `0${ind}`;
+			}
+		})
+		gsap.to(curNum, .2, {
+			force3D: true,
+			y: 0,
+			opacity: 1,
+			ease: Power2.easeOut,
+			delay: .3,
+		})
 	})
 
 })

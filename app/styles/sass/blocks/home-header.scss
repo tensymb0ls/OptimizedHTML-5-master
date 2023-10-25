@@ -8,6 +8,9 @@ html {
   height: 100%;
   color: white;
   padding-top: $size;
+  @include media-breakpoint-down(sm) {
+    padding-top: $size-sm;
+  }
 }
 
 .top-line {
@@ -20,6 +23,10 @@ html {
   background-color: $deep;
   display: flex;
   align-items: center;
+  justify-content: space-between;
+  @include media-breakpoint-down(sm) {
+    height: $size-sm;
+  }
 }
 .logo {
   flex: 0 0 200px;
@@ -35,6 +42,14 @@ html {
   &:focus {
     color: #fff;
   }
+  @include media-breakpoint-down(sm) {
+    flex: none;
+  }
+}
+.logo__text {
+  @include media-breakpoint-down(sm) {
+    display: none;
+  }
 }
 .logo__img_wrapper {
   height: $size;
@@ -42,11 +57,21 @@ html {
   display: flex;
   align-items: center;
   justify-content: center;
+  @include media-breakpoint-down(sm) {
+    width: $size-sm;
+    height: $size-sm;
+  }
 }
 .menu-button-container {
   flex: 0 0 200px;
   text-align: right;
   height: $size;
+  @include media-breakpoint-down(sm) {
+    height: $size-sm;
+  }
+  @include media-breakpoint-down(lg) {
+    flex: 0 0 100px;
+  }
 }
 .menu-button {
   position: absolute;
@@ -62,6 +87,10 @@ html {
   &:hover {
     background-color: $accent;
   }
+  @include media-breakpoint-down(sm) {
+    width: $size-sm;
+    height: $size-sm;
+  }
 }
 .top-line__decoration {
   flex: 1 0 0;
@@ -76,7 +105,18 @@ html {
     position: relative;
     top: -5px;
   }
+  @include media-breakpoint-down(lg) {
+    display: none;
+  }
 }
+
+@include media-breakpoint-down(md) {
+  .top-line__separator,
+  .top-line__adress {
+    display: none;
+  }
+}
+
 .top-line__contacts {
   text-transform: uppercase;
   font-size: 10px;
@@ -85,6 +125,9 @@ html {
   color: rgba($color: #fff, $alpha: 0.5);
   display: flex;
   align-items: center;
+  @include media-breakpoint-down(lg) {
+    justify-content: center;
+  }
 }
 .top-line__separator {
   width: 1px;
@@ -124,6 +167,10 @@ html {
   align-items: center;
   justify-content: center;
   z-index: 5;
+  @include media-breakpoint-down(sm) {
+    padding-top: $size-sm;
+    width: $size-sm;
+  }
 }
 .home-aside__decoration {
   flex: 1 0 0;
@@ -131,9 +178,15 @@ html {
   background-repeat: no-repeat;
   background-position: center;
   width: 100%;
+  @include media-breakpoint-down(sm) {
+    display: none;
+  }
 }
 .home-aside__soc {
   flex: 1 0 0;
+  @include media-breakpoint-down(sm) {
+    margin-top: 50px;
+  }
 }
 .soc-item {
   width: 40px;
@@ -170,6 +223,10 @@ html {
   background-repeat: no-repeat;
   background-position: center;
   background-size: 14px;
+  @include media-breakpoint-down(sm) {
+    width: $size-sm;
+    flex: 0 0 $size-sm;
+  }
 }
 
 // SLIDER
@@ -180,6 +237,9 @@ html {
   height: 100%;
   overflow: hidden;
   position: relative;
+  @include media-breakpoint-down(sm) {
+    padding-left: $size-sm;
+  }
 }
 .slider-bottom {
   position: absolute;
@@ -190,6 +250,11 @@ html {
   display: flex;
   align-items: center;
   z-index: 5;
+  @include media-breakpoint-down(sm) {
+    height: $size-sm;
+    left: $size-sm;
+    width: calc(75% - #{$size-sm});
+  }
 }
 .slider-share {
   flex: 0 1 auto;
@@ -207,6 +272,10 @@ html {
   &:last-child {
     border-right: 3px solid $accent;
   }
+  @include media-breakpoint-down(sm) {
+    width: $size-sm;
+    height: $size-sm;
+  }
 }
 .slider-img {
   height: 100%;
@@ -220,6 +289,9 @@ html {
     height: 100%;
     background-color: rgba($color: #000000, $alpha: 0.45);
     z-index: 2;
+  }
+  @include media-breakpoint-down(md) {
+    width: 100%;
   }
 }
 .slider-img__slide {
@@ -236,6 +308,9 @@ html {
   z-index: 3;
   width: 100%;
   height: calc(100% - #{$size});
+  @include media-breakpoint-down(sm) {
+    height: calc(100% - #{$size-sm});
+  }
 }
 .slider-text__slide {
   display: flex;
@@ -249,6 +324,13 @@ html {
   flex-direction: column;
   align-items: end;
   gap: 20px;
+  @include media-breakpoint-down(lg) {
+    padding-left: 25px;
+    padding-right: 18%;
+  }
+  @include media-breakpoint-down(sm) {
+    padding-left: 15%;
+  }
 }
 .slider-text_heading {
   text-transform: uppercase;
@@ -260,12 +342,25 @@ html {
     color: $accent;
     white-space: nowrap;
   }
+  @include media-breakpoint-down(md) {
+    font-size: 55px;
+    max-width: 500px;
+  }
+  @include media-breakpoint-down(sm) {
+    font-size: 35px;
+    white-space: pre-wrap;
+  }
 }
 .slider-text__desc {
   color: #fff;
   max-width: 540px;
-  font-size: 13px;
+  font-size: 14px;
   font-weight: 500;
+  @include media-breakpoint-down(sm) {
+    font-weight: 400;
+    margin-bottom: 40px;
+    margin-top: -15px;
+  }
 }
 .slider-pagination {
   flex: 0 0 140px;
@@ -273,6 +368,10 @@ html {
   justify-content: center;
   height: $size;
   align-items: center;
+  @include media-breakpoint-down(sm) {
+    height: $size-sm;
+    display: none;
+  }
 }
 .swiper-pagination {
   position: relative;
@@ -308,6 +407,9 @@ html {
   .swiper-scrollbar-drag {
     background-color: $accent;
   }
+  @include media-breakpoint-down(sm) {
+    display: none;
+  }
 }
 .slider-navigation__container {
   max-width: 80px;
@@ -340,6 +442,9 @@ html {
   .swiper-button-next {
     right: 0;
   }
+  @include media-breakpoint-down(sm) {
+    left: -20px;
+  }
 }
 .slider-gear {
   width: 650px;
@@ -353,6 +458,10 @@ html {
   right: 24%;
   transform: translate(50%, calc(-45% - #{$size}));
   z-index: 2;
+  @include media-breakpoint-down(sm) {
+    transform: translate(50%, calc(-45% - #{$size-sm}));
+    display: none;
+  }
 }
 .slider-pagination-count {
   position: absolute;
@@ -370,6 +479,15 @@ html {
     display: inline-block;
     min-width: 45px;
   }
+  @include media-breakpoint-down(lg) {
+    top: 20px;
+    right: 20px;
+    transform: scale(0.8);
+  }
+  @include media-breakpoint-down(sm) {
+    top: 20px;
+    right: 0;
+  }
 }
 .slider-pagination-current {
   position: absolute;
@@ -382,5 +500,10 @@ html {
   &__dot {
     color: $accent;
     -webkit-text-stroke: 1px transparent;
+  }
+  @include media-breakpoint-down(md) {
+    font-size: 50px;
+    bottom: 0;
+    right: 20px;
   }
 }

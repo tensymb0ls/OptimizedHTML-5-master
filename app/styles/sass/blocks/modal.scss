@@ -1,0 +1,36 @@
+.modal {
+  z-index: 100000000;
+  position: absolute;
+  font-family: railway-vh, sans-serif;
+}
+.modal__container {
+  background-color: $deep;
+  box-shadow: 0 0 0 8px #ffffff10;
+  border-radius: 0;
+}
+.modal__title {
+  font-family: oswald-vh, sans-serif;
+  color: #fff;
+  text-transform: uppercase;
+  font-weight: 400;
+  display: block;
+  width: 100%;
+}
+.modal__close {
+  color: #fff;
+  opacity: 0.25;
+  transition: opacity 0.25s ease-in;
+  &:hover {
+    opacity: 1;
+  }
+}
+.modal__header {
+  text-align: center;
+}
+
+.form-input {
+  margin-bottom: 8px;
+}
+.modal__footer {
+  text-align: center;
+}
